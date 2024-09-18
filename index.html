@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/style.css" rel="stylesheet" />
+        <link href="css/main-features.css" rel="stylesheet" />
+        <link href="css/maintenance.css" rel="stylesheet" />
+        <link href="css/accessibility.css" rel="stylesheet" />
+        <link href="css/graphic.css" rel="stylesheet" />
+        <link href="css/users.css" rel="stylesheet" />
+        <link href="css/phone.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" type="text/css"/>
+        <script type="text/javascript" src="js/main.js"></script>
+    </head>
+    <body>
+        <div class="header-info">
+            <h1>Smart Toilet</h1>
+            <h3>Colin Conn</h3>
+            <a href="https://sites.google.com/view/colinconn/user-interface-1/project-1" target="_blank">Project Write-up</a>
+        </div>
+        <div class="ui-border">
+            <i class="fa-solid fa-triangle-exclamation fa-xl fa-fade" id="leak-warning"></i>
+            <h3 class="user-label" id="user-label">User: Guest</h3>
+            <div class="main-features interface-section">
+                <button class="main-button flush-one" onclick="changeAction('Little Flush')"><i class="fa-solid fa-1 fa-2xl main-ui-icon"></i>Flush</button>
+                <button class="main-button flush-two" onclick="changeAction('Big Flush')"><i class="fa-solid fa-2 fa-2xl main-ui-icon"></i>Flush</button>
+                <button class="main-button bidet" onclick="bidet()"><i class="fa-solid fa-shower fa-2xl main-ui-icon"></i>Bidet</button>
+                <div class="temperature">
+                    <h4 id="temp-display">Temperature: 95&#176;F</h4>
+                    <input type="range" min="86" max:"100" value="95" class="slider" id="slider" onchange="tempChange(this.value)"/>
+                </div>
+                <div class="bidet-front bidet-radio">
+                    <input type="radio" id="front" name="bidet-radio" value="front">
+                    <label for="front">Front</label>
+                </div>
+                <div class="bidet-rear bidet-radio">
+                    <input type="radio" id="rear" name="bidet-radio" value="rear" checked>
+                    <label for="rear">Rear</h4>
+                </div>
+            </div>
+            <div class="maintenance interface-section">
+                <button class="maintenance-button unclog" onclick="changeAction('Unclogging')">Unclog</button>
+                <button class="maintenance-button clean-bowl" onclick="changeAction('Cleaning Bowl')">Clean Bowl</button>
+                <button class="maintenance-button clean-bidet" onclick="changeAction('Cleaning Bidet')">Clean Bidet</button>
+            </div>
+            <div class="accessibility interface-section">
+                <h4 class="height-select-header">Height</h4>
+                <h4 class="width-select-header">Width</h4>
+                <div class="height-select size-select">
+                    <i class="fa-solid fa-circle-chevron-left fa-xl main-ui-icon" onclick="heightDown()"></i>
+                    <h4 id="height-value">3</h4>
+                    <i class="fa-solid fa-circle-chevron-right fa-xl main-ui-icon" onclick="heightUp()"></i>
+                </div>
+                <div class="width-select size-select">
+                    <i class="fa-solid fa-circle-chevron-left fa-xl main-ui-icon" onclick="widthDown()"></i>
+                    <h4 id="width-value">3</h4>
+                    <i class="fa-solid fa-circle-chevron-right fa-xl main-ui-icon" onclick="widthUp()"></i>
+                </div>
+                <div class="rails-switch toggle-switch">
+                    <label class="switch" for="safety-rails">
+                        <input type="checkbox" name="safety-rails" id="safety-rails" onchange="sliderChanged('Safety Rails', 'safety-rails')">
+                        <span class="switch-slider"></span>
+                    </label>
+                    <h4>Safety Rails</h4>
+                </div>
+                <div class="stool-switch toggle-switch">
+                    <label class="switch" for="squat-stool">
+                        <input type="checkbox" name="squat-stool" id="squat-stool" onchange="sliderChanged('Squat Stool', 'squat-stool')">
+                        <span class="switch-slider"></span>
+                    </label>
+                    <h4>Squat Stool</h4>
+                </div>
+                <div class="screen-reader-switch toggle-switch">
+                    <label class="switch" for="screen-reader">
+                        <input type="checkbox" name="screen-reader" id="screen-reader" onchange="sliderChanged('Screen Reader', 'screen-reader')">
+                        <span class="switch-slider"></span>
+                    </label>
+                    <h4>Screen Reader</h4>
+                </div>
+            </div>
+            <button class="users" onclick="toggleUsers(false)">
+                <i class="fa-solid fa-user fa-2xl main-ui-icon"></i>
+                Users
+            </button>
+            <div class="user-menu" id="user-menu">
+                <h3 class="user-header">Users</h3>
+                <div class="user-select john" onclick="selectUser('John')">
+                    <i class="fa-solid fa-user fa-2xl user" id="john-icon"></i>
+                    <h4 class="name user" id="john-name">John</h4>
+                </div>
+                <div class="user-select timo" onclick="selectUser('Timo')">
+                    <i class="fa-solid fa-user fa-2xl user" id="timo-icon"></i>
+                    <h4 class="name user" id="timo-name">Timo</h4>
+                </div>
+                <div class="user-select gustavo" onclick="selectUser('Gustavo')">
+                    <i class="fa-solid fa-user fa-2xl user" id="gustavo-icon"></i>
+                    <h4 class="name user" id="gustavo-name">Gustavo</h4>
+                </div>
+                <div class="user-select betsy" onclick="selectUser('Betsy')">
+                    <i class="fa-solid fa-user fa-2xl user" id="betsy-icon"></i>
+                    <h4 class="name user" id="betsy-name">Betsy</h4>
+                </div>
+                <i class="fa-solid fa-circle-xmark close-users" onclick="toggleUsers(true)"></i>
+                <div class="profiles">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="text-box">
+            <h3>Action:</h3>
+            <h5 id="action">None</h5>
+        </div>
+        <div class="situation-buttons">
+            <button class="situation-button" onclick="breakToilet()">Break Toilet</button>
+            <button class="situation-button" onclick="fixToilet()">Fix Toilet</button>
+        </div>
+        <div class="graphic-background">
+            <div class="toilet-body">
+                <div class="graphic-interface">
+                    <div class="graphic-interface-section"></div>
+                    <div class="graphic-interface-section"></div>
+                    <div class="graphic-interface-section"></div>
+                </div>
+                <div class="tank"></div>
+                <div class="bowl" id="toilet-bowl">
+                    <div class="inner-bowl">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="phone">
+            <div class="microphone"></div>
+            <div class="camera"></div>
+            <div class="screen"></div>
+            <div class="phone-page health-page" id="health-page">
+                <h2 class="health-header">Health</h2>
+                <div class="health-box-one phone-box">
+                    <h4 id="health-name">Name: Guest</h4>
+                    <h4 id="health-age">Age: ???</h3>
+                    <h4 id="health-hydration">Hydraton Level: Normal</h3>
+                </div>
+                <div class="health-box-two phone-box">
+                    <h3 class="bathroom-trips" id="bathroom-trips">Bathroom Trips Today: ???</h3>
+                    <h4 class="bathroom-trips" id="weekly-average">This Week's Average: ???</h4>
+                </div>
+            </div>
+            <div class="phone-page water-page" id="water-page">
+                <h2 class="water-header">Water Usage</h2>
+                <div class="water-box phone-box">
+                    <h3>Water Used This Week:</h3>
+                    <h2>32 Gallons</h2>
+                    <h3>Change from Last Week:</h3>
+                    <h2>4 Fewer Gallons</h2>
+                </div>
+            </div>
+            <div class="phone-page rgb-page" id="rgb-page">
+                <h2 class="rgb-header">LED Color</h2>
+                <div class="rgb-box phone-box">
+                   <input type="number" class="rgb-input" id="red-rgb" min=0 max="255">
+                    <label for="red-rgb" id="red-rgb-label">Red (0-255)</label>
+                    <input type="number" class="rgb-input" id="green-rgb" min=0 max="255">
+                    <label for="green-rgb" id="green-rgb-label">Green (0-255)</label>
+                    <input type="number" class="rgb-input" id="blue-rgb" min=0 max="255">
+                    <label for="blue-rgb" id="blue-rgb-label">Blue (0-255)</label>
+                    <button class="save-rgb rgb-button" onclick="applyLED()">Apply</button>
+                    <button class="no-rgb rgb-button" onclick="ledOff()">Clear</button>
+                </div>
+            </div>
+            <div class="phone-page defaults-page" id="defaults-page">
+                <h2 class="defaults-header">Set Defaults</h2>
+                <div class="defaults-box phone-box">
+                    <h4 id="seat-height-default" class="default-text">Seat Height: 3</h4>
+                    <h4 id="bowl-width-default" class="default-text">Bowl Width: 3</h4>
+                    <h4 id="squat-stool-default" class="default-text">Squat Stool: Disabled</h4>
+                    <h4 id="safety-rails-default" class="default-text">Safety Rails: Disabled</h4>
+                    <h4 id="screen-reader-default" class="default-text">Screen Reader: Disabled</h4>
+                    <h4 id="led-color-default" class="default-text">LED Color: None</h4>
+                </div>
+            </div>
+            <button class="connect-button" id="connect" onclick="connect(false)">Connect</button>
+            <button class="connect-button" id="disconnect" onclick="connect(true)">Disconnect</button>
+            <h4 class="connected-to" id="connected-to">Connected to: </h4>
+            <div class="icon-bar">
+                <div class="phone-health phone-button" onclick="openHealth()">
+                    <i class="fa-solid fa-heart fa-xl phone-button-icon" id="phone-health-button"></i>
+                    <label for="phone-health-button" class="phone-button-label">Health</label>
+                </div>
+                <div class="divider divider-one"></div>
+                <div class="phone-water phone-button" onclick="openWater()">
+                    <i class="fa-solid fa-water fa-xl phone-button-icon" id="phone-water-button" ></i>
+                    <label for="phone-water-button" class="phone-button-label phone-water-label">Water</label>
+                </div>
+                <div class="divider divider-two"></div>
+                <div class="phone-rgb phone-button" onclick="openRGB()">
+                    <i class="fa-solid fa-palette fa-xl phone-button-icon" id="phone-rgb-button"></i>
+                    <label for="phone-rgb-button" class="phone-button-label phone-rgb-label">LED</label>
+                </div>
+                <div class="divider divider-three"></div>
+                <div class="phone-defaults phone-button" onclick="openDefaults()">
+                    <i class="fa-solid fa-gear fa-xl phone-button-icon" id="phone-defaults-button"></i>
+                    <label for="phone-defaults-button" class="phone-button-label">Defaults</label>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

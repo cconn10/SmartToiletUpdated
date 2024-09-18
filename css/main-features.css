@@ -1,0 +1,48 @@
+.main-features {
+    grid-row: line2 / span 1;
+    display: grid;
+    grid-template-columns: [start] 33% [line2] 33% [line3] 33% [end];
+    grid-template-rows: [start] 100px [line2] 50px [line3] 50px [line4] 100px [end];
+    column-gap: 10px;
+}
+
+.flush-one {
+    grid-column: start / span 1;
+    grid-row: start / span 1;
+}
+.flush-two {
+    grid-column: line2 / span 1;
+    grid-row: start / span 1;
+}
+
+.bidet {
+    grid-column: start / span 1;
+    grid-row: line2 / span 1;
+}
+
+.bidet-front {
+    grid-column: line2 / span 1;
+    grid-row: line3 / span 1;
+}
+.bidet-rear {
+    grid-column: line3 / span 1;
+    grid-row: line3 / span 1;
+}
+.bidet-radio {
+    display: flex;
+    align-content: center;
+}
+.bidet-radio *{
+    height: 20px;
+    width: 20px;
+    font-weight: 600;
+}
+
+.temperature {
+    grid-column: line2 / span 2;
+    grid-row: line2 / span 1;
+}
+.slider {
+    background-color: #20539B;
+    width: 150px;
+}
