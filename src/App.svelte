@@ -1,33 +1,18 @@
 <script lang="ts">
-    import { Users } from "./lib/enum.js";
-    import { connected } from "./lib/stores.js";
+    import { onMount } from "svelte";
+    import MainInterface from "./lib/components/MainInterface.svelte";
+    import Phone from "./lib/components/Phone.svelte";
+    import ToiletGraphic from "./lib/components/ToiletGraphic.svelte";
+    import { toilet as t } from "./lib/data/data.svelte";
 
-    import MainInterface from "./lib/MainInterface.svelte";
-    import Phone from "./lib/Phone.svelte";
-    import ToiletGraphic from "./lib/ToiletGraphic.svelte";
+    let isBroken: boolean = $state(false);
 
-    let isBroken: boolean = false;
-
-    function toggleBreak() {
-        isBroken = !isBroken;
-    }
-
-    let action = "None";
-
-    function updateAction(event: any) {
-        action = event.detail.actionText;
-    }
-
-    let activeUser = Users.GUEST;
-
-    function changeUser(event: any) {
-        activeUser = event.detail.user;
-    }
-
-    let phoneConnected: boolean;
-
-    connected.subscribe((c) => {
-        phoneConnected = c;
+    onMount(() => {
+        const interval = setInterval(() => {
+            t.action = "none";
+            t.actionMessage = "None";
+        }, 3000);
+        return () => clearInterval(interval);
     });
 </script>
 
@@ -42,28 +27,20 @@
     </a>
 </div>
 
-<MainInterface
-    {isBroken}
-    on:action={updateAction}
-    on:userChanged={changeUser}
-/>
+<MainInterface {isBroken} />
 
 <div class="text-box">
     <h3>Action:</h3>
-    <h5 id="action">{action}</h5>
+    <h5 id="action">{t.actionMessage}</h5>
 </div>
 <div class="situation-buttons">
-    <button class="situation-button" on:click={toggleBreak}
-        >Toggle Broken Toilet</button
+    <button class="situation-button" onclick={() => (isBroken = !isBroken)}>
+        {isBroken ? "Fix " : "Break"} Toilet</button
     >
 </div>
 
 <ToiletGraphic />
-{#if phoneConnected}
-    <Phone {activeUser} />
-{:else}
-    <Phone />
-{/if}
+<Phone />
 
 <style>
     .header-info {
@@ -73,6 +50,10 @@
 
     h3 {
         margin: 0 0 5px 0;
+    }
+
+    #action {
+        text-transform: capitalize;
     }
 
     button {
@@ -100,8 +81,7 @@
         grid-column: line3 / span 1;
         grid-row: start / span 1;
 
-        width: 100px;
-        height: 50px;
+        width: 150px;
         position: relative;
         left: 100px;
         top: 100px;

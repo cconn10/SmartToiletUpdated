@@ -1,10 +1,22 @@
+
+:root {
+  --primary: #20539B;
+  --secondary: #21897E;
+  --secondary-bg: rgba(33, 137, 126, 0.25);
+  --danger: #F20D0D;
+  --success: #4BB543;
+  --background: #FAFAFA;
+  --text-disabled: #5F5F5F;
+}
+
 body {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
 }
 
+
 #app {
-  padding: 50px;
+  padding: 10px;
   display: grid;
   grid-template-columns: [start] 300px [line2] 100px [line3] 300px [line4] 100px [line5] 300px [end];
   grid-template-rows: [start] 175px [line2] 350px [line3] 350px [end];
@@ -12,4 +24,16 @@ body {
   row-gap: 10px;
   position: absolute;
   z-index: -100;
+}
+
+.active {
+    color: var(--primary);
+}
+
+.inactive {
+    color: var(--text-disabled);
+}
+
+label {
+    cursor: pointer;
 }
