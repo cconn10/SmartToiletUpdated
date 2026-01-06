@@ -1,0 +1,15 @@
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+      "Lucida Sans", Arial, sans-serif;
+}
+
+#app {
+  padding: 50px;
+  display: grid;
+  grid-template-columns: [start] 300px [line2] 100px [line3] 300px [line4] 100px [line5] 300px [end];
+  grid-template-rows: [start] 175px [line2] 350px [line3] 350px [end];
+  column-gap: 10px;
+  row-gap: 10px;
+  position: absolute;
+  z-index: -100;
+}

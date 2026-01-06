@@ -1,0 +1,72 @@
+export const Users = Object.freeze({
+	JOHN: {
+		firstName: 'John',
+		lastName: 'Smith',
+		age: 34,
+		seatHeight: 3,
+		bowlWidth: 5,
+		led: '#DCD0FF',
+		stool: true,
+		rails: false,
+		reader: false,
+		hydration: 'Overhydrated',
+		bathroomTrips: 5,
+		weeklyAvg: 3
+	},
+	TIMO: {
+		firstName: 'Timo',
+		lastName: 'Smith',
+		age: 4,
+		seatHeight: 1,
+		bowlWidth: 1,
+		led: '#FF0000',
+		stool: true,
+		rails: false,
+		reader: true,
+		hydration: 'Normal',
+		bathroomTrips: 1,
+		weeklyAvg: 2
+	},
+	GUSTAVO: {
+		firstName: 'Gustavo',
+		lastName: 'Smith',
+		age: 77,
+		seatHeight: 5,
+		bowlWidth: 2,
+		led: '#00FFFFFF',
+		stool: true,
+		rails: true,
+		reader: true,
+		hydration: 'Dehydrated',
+		bathroomTrips: 3,
+		weeklyAvg: 4
+	},
+	BETSY: {
+		firstName: 'Betsy',
+		lastName: 'Smith',
+		age: 40,
+		seatHeight: 2,
+		bowlWidth: 3,
+		led: '#00FFFFFF',
+		stool: false,
+		rails: false,
+		reader: false,
+		hydration: 'Normal',
+		bathroomTrips: 3,
+		weeklyAvg: 3
+	},
+	GUEST: {
+		firstName: 'Guest',
+		lastName: 'User',
+		age: 0,
+		seatHeight: 3,
+		bowlWidth: 3,
+		led: '#00FFFFFF',
+		stool: false,
+		rails: false,
+		reader: false,
+		hydration: 'Normal',
+		bathroomTrips: 0,
+		weeklyAvg: 0
+	}
+});
