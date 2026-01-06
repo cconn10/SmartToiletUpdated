@@ -1,7 +1,5 @@
 <script lang="ts">
     import { toilet as t } from "../data/data.svelte";
-
-    $inspect(t.action);
 </script>
 
 <div class="graphic-background">

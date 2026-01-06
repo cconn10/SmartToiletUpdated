@@ -6,12 +6,6 @@
         toilet,
     } from "../data/data.svelte.js";
     import { Pages } from "../data/enum.js";
-
-    !$inspect(phone.activePage);
-
-    let LEDcolor = $state(toilet.activeUser.settings.led);
-
-    let applyLED = () => {};
 </script>
 
 <div class="phone">
@@ -74,20 +68,19 @@
         {:else if phone.activePage.id === Pages.LED.id}
             <div class="phone-page" id="rgb-page">
                 <div class="phone-box">
-                    <label for="color-picker">Choose Color</label>
+                    <label for="color-picker" class="rgb-label"
+                        >Choose Color</label
+                    >
                     <input
                         type="color"
                         name=""
                         id="color-picker"
                         bind:value={t.ledColor}
                     />
-                    <button class="save-rgb rgb-button" onclick={applyLED}
-                        >Apply</button
-                    >
                     <button
-                        class="no-rgb rgb-button"
+                        class="no-rgb"
                         onclick={() => (toilet.ledColor = "transparent")}
-                        >Clear</button
+                        >Turn Off Lights</button
                     >
                 </div>
             </div>
@@ -172,13 +165,13 @@
     .phone-box {
         width: 100%;
         padding: 15px;
-        margin: 10px 0;
         background-color: var(--secondary);
         border-radius: 10px;
         color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 5px;
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
     }
 
@@ -195,8 +188,10 @@
 
     .phone-page {
         display: flex;
+        height: 100%;
         flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
     }
 
     .microphone {
@@ -282,10 +277,18 @@
         cursor: pointer;
     }
 
-    /* h4 {
-        margin: 5px 0;
-    } */
-    /* h3 {
-        margin: 0 0 5px 0;
-    } */
+    .no-rgb {
+        background-color: var(--primary);
+        color: white;
+        font-weight: 600;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .rgb-label {
+        font-size: 24px;
+        font-weight: 600;
+    }
 </style>
