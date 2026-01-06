@@ -20,7 +20,7 @@
     <h1>Smart Toilet</h1>
     <h3>Colin Conn</h3>
     <a
-        href="https://sites.google.com/view/colinconn/ui/user-interface-1/smart-object"
+        href="https://colin-conn.me/projects/smart-toilet-refresh"
         target="_blank"
     >
         Project Write-up
