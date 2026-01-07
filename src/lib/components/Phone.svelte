@@ -33,7 +33,7 @@
                 </div>
                 <div class="phone-box">
                     <h4 id="health-hydration" class="phone-box-label">
-                        Hydraton Level
+                        Hydration Level
                     </h4>
                     <h4>{t.activeUser.health.hydration}</h4>
                 </div>
